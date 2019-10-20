@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
 
-export default class Favorites extends Component {
+class Favorites extends Component {
 
   constructor(props){
     super(props)
@@ -9,6 +9,7 @@ export default class Favorites extends Component {
 
     }
   }
+  
   render() {
     return (
       <View>
@@ -16,3 +17,9 @@ export default class Favorites extends Component {
     )
   }
 }
+
+Favorites.navigationOptions = {
+  title: 'Favorites'
+}
+
+export default Favorites

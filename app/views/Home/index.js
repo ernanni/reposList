@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { View, Text } from 'react-native'
+import styles from './style'
 
-export default class Home extends Component {
+class Home extends Component {
 
   constructor(props){
     super(props)
@@ -9,10 +10,18 @@ export default class Home extends Component {
       
     }
   }
+
   render() {
     return (
-      <View>
+      <View style={styles.Component}>
+        <Text style={styles.Title}>Welcome to Repos List App</Text>
       </View>
     )
   }
 }
+
+Home.navigationOptions = {
+  title: 'Home'
+}
+
+export default Home

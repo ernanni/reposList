@@ -1,4 +1,5 @@
-import { createAppContainer, createStackNavigator } from 'react-navigation'
+import { createAppContainer } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation-stack'
 import {
   Favorites,
   Home,
@@ -7,6 +8,12 @@ import {
 
 const Routes = createAppContainer(
   createStackNavigator({
-    Home: Home
+    Favorites: Favorites,
+    Home: Home,
+    List: List
+  }, {
+    initialRouteName: 'Home'
   })
 )
+
+export default Routes
