@@ -1,24 +1,25 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
-
+import { View, Text } from 'react-native'
+ 
 class List extends Component {
-
+ 
+  state = {
+    username: JSON.stringify(this.props.navigation.getParam('name'))
+  }
   constructor(props){
     super(props)
-    this.state = {
-      
-    }
   }
   render() {
     return (
       <View>
+        <Text>{this.state.username}</Text>
       </View>
     )
   }
 }
-
+ 
 List.navigationOptions = {
   title: 'List'
 }
-
+ 
 export default List
