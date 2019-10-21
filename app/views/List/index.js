@@ -1,51 +1,51 @@
-import React, { Component } from 'react'
-import { View, Text } from 'react-native'
-import axios from 'axios'
- 
+import React, {Component} from 'react';
+import {View, Text, ScrollView} from 'react-native';
+import axios from 'axios';
+
 class List extends Component {
- 
   state = {
     username: '',
-    reposList: []
-  }
-  constructor(props){
-    super(props)
-  }
+    reposList: [],
+  };
 
   componentDidMount() {
-    this.setState({username: this.props.navigation.getParam('name', 'ernanni')})
-    console.log(this.state.username)
-    
-    axios.get(`https://api.github.com/users/ernanni/repos`)
+    const {navigation} = this.props;
+    let username = navigation.getParam('name', '');
+
+    axios
+      .get(`https://api.github.com/users/${username}/repos`)
       .then(response => {
-        console.log('success ',response)
-        this.setState({reposList: response})
+        console.log('success ', response);
+        this.setState({reposList: response.data});
       })
-      .catch(error => {console.log('error ', error.response.data)})
+      .catch(error => {
+        console.log('error ', error.response.data);
+      });
   }
 
   mountList() {
     return this.state.reposList.map((item, index) => {
       return (
-        <View>
-          <Text>{item.name}</Text>
+        <View style={{paddingHorizontal: 20}}>
+          <Text style={{fontWeight: 'bold'}}>{item.name}</Text>
           <Text>{item.full_name}</Text>
+          <Text />
         </View>
-      )
-    })
+      );
+    });
   }
 
   render() {
     return (
-      <View>
-        {this.state.reposList}
-      </View>
-    )
+      <ScrollView contentContainerStyle={{paddingVertical: 20}}>
+        {this.mountList()}
+      </ScrollView>
+    );
   }
 }
-
-List.navigationOptions = {
-  title: 'List'
-}
  
-export default List
+List.navigationOptions = {
+  title: 'List',
+};
+ 
+export default List;
