@@ -25,7 +25,7 @@ class List extends Component {
   }
 
   mountList() {
-    return this.state.reposList.map(item, index => {
+    return this.state.reposList.map((item, index) => {
       return (
         <View>
           <Text>{item.name}</Text>
